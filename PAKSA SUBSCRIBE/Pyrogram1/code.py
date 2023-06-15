@@ -16,7 +16,7 @@ async def fsub(bot, message):
     tfsub = f"👋Halo {message.from_user.mention}\n\nSebelum menggunakan {BOT_USERNAME} kamu harus subscribe atau join channel dibawah ini jika sudah klik coba lagi💡"
     bfsub = InlineKeyboardMarkup([
                                   [InlineKeyboardButton(text="Join Channel", url=link),],
-                                  [InlineKeyboardButton(text="Coba lagi", url=f"https://t.me/{BOT_USERNAME}start=start")]
+                                  [InlineKeyboardButton(text="Coba lagi", url=f"https://t.me/{bot.username}?start={message.command[1]}")]
                                 ])
     await message.reply_text(tfsub, reply_markup=bfsub)
     await message.stop_propagation()
