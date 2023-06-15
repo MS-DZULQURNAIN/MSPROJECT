@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 
 @Bot.on_message(filters.incoming & filters.private, group=-1)
@@ -14,4 +14,9 @@ async def fsub(bot, message):
     else:
       link = f"https://t.me/{FSUB}"
     tfsub = f"👋Halo {message.from_user.mention}\n\nSebelum menggunakan {BOT_USERNAME} kamu harus subscribe atau join channel dibawah ini jika sudah klik coba lagi💡"
-    bfsub = InlineKeyboardMarkup([[InlineKeyboardButton(text="Join Channel", url=link),], [InlineKeyboardButton(text="Coba lagi", url=f"https://t.me/{BOT_USERNAME}start=start")]])
+    bfsub = InlineKeyboardMarkup([
+                                  [InlineKeyboardButton(text="Join Channel", url=link),],
+                                  [InlineKeyboardButton(text="Coba lagi", url=f"https://t.me/{BOT_USERNAME}start=start")]
+                                ])
+    await message.reply_text(tfsub, reply_markup=bfsub)
+    await message.stop_propagation()
